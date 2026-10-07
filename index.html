@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九五樂府 95music - 專業唱片/影音/動漫周邊代購專賣店</title>
+  
+  <style>
+    /* --------------------------------------------------------------------------
+       === [ 顏色與變數設定說明 / Color Theme Variables ] ===
+       如果要修改網頁顏色，請直接修改以下 :root 裡面的色彩數值：
+       - --primary-color: 主主題色（預設為九五樂府經典藍色 #1b4965）
+       - --accent-color: 強調/點綴色（預設為亮紅色 #d90429，用於價格、熱門標籤）
+       - --bg-color: 網頁總背景色（預設為淡灰白色 #f4f6f8）
+       - --card-bg: 卡片/區塊背景色（預設為純白 #ffffff）
+       - --text-main: 主要文字顏色（預設為深灰 #2b2d42）
+       - --text-muted: 次要/說明文字顏色（預設為中灰 #6c757d）
+       -------------------------------------------------------------------------- */
+    :root {
+      /* === 主題顏色 (Color Themes) === */
+      --primary-color: #1b4965;      /* 主色：深藍色 Header與標題 */
+      --primary-hover: #12344a;      /* 主色懸浮態 */
+      --accent-color: #d90429;       /* 強調色：紅標、價格、特價商品 */
+      --accent-hover: #ef233c;       /* 強調色懸浮態 */
+      --secondary-color: #62b6cb;    /* 次要色：輔助標籤、連結高亮 */
+      --bg-color: #f4f6f8;           /* 全局背景色 */
+      --card-bg: #ffffff;            /* 卡片與容器背景 */
+      --text-main: #2b2d42;          /* 主文字顏色 */
+      --text-muted: #6c757d;         /* 次要文字顏色 */
+      --border-color: #e0e6ed;       /* 邊框顏色 */
+
+      /* === 區塊間距與邊距 (Section Spacing & Margins) ===
+         若要調整網頁整體的排版緊密程度，可修改這裡：
+         - --section-gap: 各大區塊之間的垂直間距
+         - --card-padding: 卡片內部的留白
+         - --container-max-width: 網頁最大寬度
+      -------------------------------------------------------------------------- */
+      --section-gap: 28px;           /* 區塊與區塊間的距離 */
+      --card-padding: 16px;          /* 一般卡片的內邊距 */
+      --container-max-width: 1200px; /* 頁面最大寬度 */
+      --border-radius: 8px;          /* 圓角大小 */
+    }
+
+    /* === 全局重置與基本樣式 === */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    /* 通用容器寬度居中 */
+    .container {
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* === 頂部公告欄 (Top Announcement Bar) === */
+    .top-notice {
+      background-color: #0b253a;
+      color: #edf2f4;
+      font-size: 13px;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    .top-notice a {
+      color: #90e0ef;
+      text-decoration: underline;
+      margin-left: 8px;
+    }
+
+    /* === 頁頭 Header === */
+    .main-header {
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    /* Logo 標題風格 (如何修改標題顏色與大小請看這裡) */
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      background-color: var(--accent-color);
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 6px 12px;
+      border-radius: var(--border-radius);
+      letter-spacing: 1px;
+    }
+
+    .logo-text h1 {
+      font-size: 24px; /* 修改標題字體大小 */
+      color: var(--primary-color); /* 修改標題文字顏色 */
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .logo-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* 搜尋列 */
+    .search-section {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      max-width: 500px;
+      margin: 0 24px;
+    }
+
+    .search-box {
+      display: flex;
+      width: 100%;
+      border: 2px solid var(--primary-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .search-select {
+      border: none;
+      background: #f0f4f8;
+      padding: 0 12px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .search-input {
+      border: none;
+      padding: 10px 14px;
+      flex-grow: 1;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-btn {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .search-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* 快捷會員工具區 */
+    .header-user-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #fff0f3;
+      color: var(--accent-color);
+      border: 1px solid #ffccd5;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .cart-count {
+      background-color: var(--accent-color);
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    /* 主導覽列 Navigation */
+    .main-nav {
+      background-color: var(--primary-color);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      overflow-x: auto;
+    }
+
+    .nav-item a {
+      display: block;
+      padding: 12px 18px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-item a:hover, .nav-item.active a {
+      background-color: var(--primary-hover);
+      border-bottom: 3px solid var(--accent-color);
+      color: #fff;
+    }
+
+    /* === 主要內容區佈局 (Main Layout) ===
+       使用 Grid 將畫面分為左右兩欄：
+       - 左邊側邊欄 (Sidebar): 260px
+       - 右邊主要內容區 (Main Content): 剩餘彈性寬度
+       修改 grid-template-columns 可以調整側邊欄寬度
+    -------------------------------------------------------------------------- */
+    .page-wrapper {
+      margin-top: var(--section-gap); /* 控制頁頭與主內容間距 */
+      margin-bottom: var(--section-gap);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: var(--section-gap); /* 左右側欄之間的間距 */
+    }
+
+    /* 手機版自動改為單欄 */
+    @media (max-width: 868px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-top-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .search-section {
+        max-width: 100%;
+        margin: 8px 0;
+      }
+    }
+
+    /* === 側邊欄元件 (Sidebar Styling) === */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+
+    .sidebar-widget {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: var(--card-padding);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .widget-title {
+      font-size: 16px;
+      color: var(--primary-color);
+      font-weight: 700;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--primary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 分類選單列表 */
+    .category-list {
+      list-style: none;
+    }
+
+    .category-list li {
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .category-list li:last-child {
+      border-bottom: none;
+    }
+
+    .category-list a {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 4px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .category-list a:hover {
+      padding-left: 8px;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    .category-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      background-color: #f0f0f0;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    /* 暢銷排行榜 (Ranking Widget) */
+    .rank-list {
+      list-style: none;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .rank-num {
+      width: 22px;
+      height: 22px;
+      background-color: #e2e8f0;
+      color: var(--text-main);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .rank-item:nth-child(1) .rank-num { background-color: #ffd166; color: #5c3d00; }
+    .rank-item:nth-child(2) .rank-num { background-color: #e0e1dd; color: #333; }
+    .rank-item:nth-child(3) .rank-num { background-color: #f4a261; color: #fff; }
+
+    .rank-info {
+      overflow: hidden;
+    }
+
+    .rank-title {
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rank-artist {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* === 主展示區 Hero Banner & 公告區 === */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: var(--section-gap);
+    }
+
+    /* 大橫幅看板 Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #1b4965 0%, #2b2d42 100%);
+      color: #fff;
+      border-radius: var(--border-radius);
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+    }
+
+    .hero-text {
+      max-width: 60%;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 26px; /*  banner 大標題 */
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #e0e6ed;
+      margin-bottom: 20px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background-color: #fff;
+      color: var(--primary-color);
+      font-weight: bold;
+      padding: 10px 22px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .hero-btn:hover {
+      background-color: var(--secondary-color);
+      color: #fff;
+    }
+
+    .hero-image-wrap {
+      width: 180px;
+      height: 180px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transform: rotate(3deg);
+      z-index: 2;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* === 商品區塊通用標題 (Section Header) === */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 20px; /* 控制各商品區塊標題大小 */
+      color: var(--primary-color);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 20px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .more-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* 商品網格 Layout Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px; /* 商品卡片之間的間距 */
+    }
+
+    /* 單一商品卡片 (Product Card) */
+    .product-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: var(--card-padding);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+
+    /* 唱片封面容器 */
+    .album-cover-container {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 正方形唱片比例 */
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background-color: #e2e8f0;
+    }
+
+    .album-cover-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .album-cover-container img {
+      transform: scale(1.05);
+    }
+
+    /* 規格標籤 (如: 日版, 韓版, 初回盤, 預購) */
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: rgba(27, 73, 101, 0.9);
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .badge.preorder {
+      background-color: var(--accent-color);
+    }
+
+    /* 商品資訊 */
+    .product-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .album-artist {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .album-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 8px;
+      /* 限制最多顯示 2 行文字 */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .album-meta {
+      font-size: 11px;
+      color: #8d99ae;
+      margin-bottom: 12px;
+    }
+
+    /* 價格與購買按鈕 */
+    .product-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px dashed #edf2f4;
+    }
+
+    .price-tag {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-color);
+    }
+
+    .price-tag small {
+      font-size: 11px;
+      font-weight: normal;
+      color: var(--text-muted);
+    }
+
+    .add-cart-btn {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .add-cart-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* === 九五樂府特色說明區塊 === */
+    .features-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-top: 10px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      background-color: #e0f2fe;
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+
+    .feature-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* === 頁尾 Footer (修改版權與店家資訊) === */
+    .main-footer {
+      background-color: #111827;
+      color: #9ca3af;
+      padding-top: 40px;
+      padding-bottom: 20px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-col h3 {
+      color: #f3f4f6;
+      font-size: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary-color);
+      display: inline-block;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1f2937;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       === 頂部跑馬燈/公告欄區塊 (Top Announcement Bar) ===
+       修改下方文字可變更頁面最上方最新公告
+       ========================================================================== -->
+  <div class="top-notice">
+    <div class="container">
+      📢 <strong>九五樂府公告：</strong> 日本／韓國最新發行唱片熱烈預購中！台北西門町門市提供現場取貨服務。<a href="#news">查看門市詳細地址與營業時間 &raquo;</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       === 頁頭 Header (標題、logo、搜尋列、購物車) ===
+       ========================================================================== -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-top-row">
+        
+        <!-- Logo 標題區 (可在此修改店名標題) -->
+        <a href="#" class="site-logo">
+          <div class="logo-badge">95</div>
+          <div class="logo-text">
+            <!-- [如何修改標題]: 直接替換「九五樂府 95MUSIC」文字即可 -->
+            <h1>九五樂府</h1>
+            <span>95MUSIC CD & DVD ONLINE STORE</span>
+          </div>
+        </a>
+
+        <!-- 搜尋列 -->
+        <div class="search-section">
+          <form class="search-box" onsubmit="event.preventDefault();">
+            <select class="search-select">
+              <option>全部商品</option>
+              <option>日本音樂</option>
+              <option>韓國流行</option>
+              <option>西洋音樂</option>
+              <option>動漫 / 原聲帶</option>
+              <option>影音 DVD/BD</option>
+            </select>
+            <input type="text" class="search-input" placeholder="搜尋專輯名稱、演出者、歌手、商品編號...">
+            <button type="submit" class="search-btn">搜尋</button>
+          </form>
+        </div>
+
+        <!-- 會員與購物車快捷區 -->
+        <div class="header-user-actions">
+          <a href="#">會員登入 / 註冊</a>
+          <a href="#" class="cart-btn">
+            🛒 購物車
+            <span class="cart-count">3</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 主選單導覽列 (Main Navigation) -->
+    <nav class="main-nav">
+      <div class="container">
+        <ul class="nav-list">
+          <li class="nav-item active"><a href="#">首頁</a></li>
+          <li class="nav-item"><a href="#">新片預購 (Pre-order)</a></li>
+          <li class="nav-item"><a href="#">日本流行 (J-POP)</a></li>
+          <li class="nav-item"><a href="#">韓國流行 (K-POP)</a></li>
+          <li class="nav-item"><a href="#">西洋音樂 (Western)</a></li>
+          <li class="nav-item"><a href="#">動漫原聲 (ACG & OST)</a></li>
+          <li class="nav-item"><a href="#">華語音樂 (Mandarin)</a></li>
+          <li class="nav-item"><a href="#">門市公告與代購說明</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       === 主體區塊 (Main Content Area) ===
+       包含左側邊欄 (Sidebar) 與右側商品內容區 (Content Area)
+       ========================================================================== -->
+  <div class="container page-wrapper">
+    <div class="main-grid">
+
+      <!-- ----------------------------------------------------------------------
+           === [左側邊欄 Sidebar] ===
+           包含音樂分類清單與本週暢銷排行榜
+           ---------------------------------------------------------------------- -->
+      <aside class="sidebar">
+
+        <!-- 側邊欄分類 1：唱片詳細分類 -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">音樂商品分類</h3>
+          <ul class="category-list">
+            <li><a href="#"><span>J-POP 日本流行</span> <span class="category-count">1,240</span></a></li>
+            <li><a href="#"><span>K-POP 韓國流行</span> <span class="category-count">980</span></a></li>
+            <li><a href="#"><span>ACG 動漫 / 遊戲原聲</span> <span class="category-count">850</span></a></li>
+            <li><a href="#"><span>聲優 / 2.5次元</span> <span class="category-count">430</span></a></li>
+            <li><a href="#"><span>西洋搖滾 / 流行</span> <span class="category-count">620</span></a></li>
+            <li><a href="#"><span>經典爵士 / 古典</span> <span class="category-count">310</span></a></li>
+            <li><a href="#"><span>華語唱片</span> <span class="category-count">510</span></a></li>
+            <li><a href="#"><span>電影電視配樂 OST</span> <span class="category-count">290</span></a></li>
+            <li><a href="#"><span>演唱會 Blu-ray / DVD</span> <span class="category-count">410</span></a></li>
+            <li><a href="#"><span>明星周邊 / 雜誌寫真</span> <span class="category-count">180</span></a></li>
+          </ul>
+        </div>
+
+        <!-- 側邊欄分類 2：本週熱銷榜 -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">本週實體銷售榜 <span>Top 5</span></h3>
+          <ul class="rank-list">
+            <li class="rank-item">
+              <span class="rank-num">1</span>
+              <div class="rank-info">
+                <div class="rank-title">GOLDEN HOUR : Part.2</div>
+                <div class="rank-artist">ATEEZ</div>
+              </div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-num">2</span>
+              <div class="rank-info">
+                <div class="rank-title">怪獸8號 原聲帶 OST</div>
+                <div class="rank-artist">坂東祐大</div>
+              </div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-num">3</span>
+              <div class="rank-info">
+                <div class="rank-title">Iris (初回限定盤 CD+BD)</div>
+                <div class="rank-artist">ClariS</div>
+              </div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-num">4</span>
+              <div class="rank-info">
+                <div class="rank-title">12th Single「相會吧」</div>
+                <div class="rank-artist">日向坂46</div>
+              </div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-num">5</span>
+              <div class="rank-info">
+                <div class="rank-title">Short n' Sweet (LP黑膠)</div>
+                <div class="rank-artist">Sabrina Carpenter</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 服務公告 -->
+        <div class="sidebar-widget" style="background-color: #f8fafc;">
+          <h3 class="widget-title">日本代購說明</h3>
+          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+            九五樂府提供日本 Oricon 榜單計榜代購！未上架之 CD/DVD/周邊，歡迎提供日本 Amazon、Tower Records 網址洽詢代訂。
+          </p>
+        </div>
+
+      </aside>
+
+      <!-- ----------------------------------------------------------------------
+           === [右側主要內容區 Content Area] ===
+           包含大型 Banner、發行預購區塊、日韓推薦區塊
+           ---------------------------------------------------------------------- -->
+      <main class="content-area">
+
+        <!-- 大型發行預購熱門推薦看板 (Hero Banner) -->
+        <div class="hero-banner">
+          <div class="hero-text">
+            <span class="hero-tag">🔥 本週焦點預購</span>
+            <h2 class="hero-title">YOASOBI 5th Anniversary Live Special Edition</h2>
+            <p class="hero-subtitle">五週年紀念演唱會完整收錄！日版初回生產限定盤附贈寫真冊與特製外盒。</p>
+            <a href="#" class="hero-btn">搶先預購 (NT$ 1,880)</a>
+          </div>
+          <div class="hero-image-wrap">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80" alt="YOASOBI Album Cover">
+          </div>
+        </div>
+
+        <!-- 商品區塊 1：最新熱門預購 (Hot Pre-Orders) -->
+        <section>
+          <div class="section-header">
+            <!-- [如何修改區塊標題]: 修改 <h2> 內的文字即可 -->
+            <h2 class="section-title">熱門發行預購 (Pre-Orders)</h2>
+            <a href="#" class="more-link">查看更多預購商品 &raquo;</a>
+          </div>
+
+          <div class="products-grid">
+
+            <!-- 商品卡片 1 -->
+            <div class="product-card">
+              <span class="badge preorder">預購中</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">米津玄師</div>
+                <div class="album-title">LOST CORNER (初回限定「GARAKUTA」盤 CD+玩具)</div>
+                <div class="album-meta">預計發行日：2024/08/21 | 日版</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 1,680</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 2 -->
+            <div class="product-card">
+              <span class="badge preorder">預購中</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">NewJeans</div>
+                <div class="album-title">Double Single 'How Sweet' (Weverse Albums ver.)</div>
+                <div class="album-meta">預計發行日：2024/05/24 | 韓版</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 420</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 3 -->
+            <div class="product-card">
+              <span class="badge preorder">預購中</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">宇多田光</div>
+                <div class="album-title">SCIENCE FICTION 精選輯 (2CD)</div>
+                <div class="album-meta">發行日期：熱銷現貨 | 日版</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 1,120</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 4 -->
+            <div class="product-card">
+              <span class="badge preorder">預購中</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">Ado</div>
+                <div class="album-title">殘夢 (初回限定：Blu-ray 演唱會映像盤)</div>
+                <div class="album-meta">預計發行日：2024/07/10 | 日版</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 1,450</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 商品區塊 2：日韓動漫唱片專區 (J-POP / Anime Section) -->
+        <section>
+          <div class="section-header">
+            <h2 class="section-title">日韓流行 & 動漫原聲推薦</h2>
+            <a href="#" class="more-link">看更多日韓唱片 &raquo;</a>
+          </div>
+
+          <div class="products-grid">
+
+            <!-- 商品卡片 5 -->
+            <div class="product-card">
+              <span class="badge">現貨</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">結束樂團 (Bocchi the Rock!)</div>
+                <div class="album-title">劇場總集編 經典主題曲「Re:結束樂團」</div>
+                <div class="album-meta">期間生產限定盤 | CD</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 780</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 6 -->
+            <div class="product-card">
+              <span class="badge">現貨</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">King Gnu</div>
+                <div class="album-title">THE GREATEST UNKNOWN (通常盤)</div>
+                <div class="album-meta">收錄咒術迴戰主題曲 | CD</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 920</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 7 -->
+            <div class="product-card">
+              <span class="badge">現貨</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">IVE</div>
+                <div class="album-title">2nd EP 'IVE SWITCH' (Random Ver.)</div>
+                <div class="album-meta">附贈獨家預購小卡 | 韓版</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 540</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+            <!-- 商品卡片 8 -->
+            <div class="product-card">
+              <span class="badge">黑膠限定</span>
+              <div class="album-cover-container">
+                <img src="https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?w=300&auto=format&fit=crop&q=80" alt="Album Cover">
+              </div>
+              <div class="product-info">
+                <div class="album-artist">久石讓 / 宮崎駿</div>
+                <div class="album-title">「龍貓」原聲帶 LP黑膠唱片 (重壓復刻版)</div>
+                <div class="album-meta">日本進口數量限定盤 | LP</div>
+              </div>
+              <div class="product-bottom">
+                <div class="price-tag"><small>NT$</small> 1,380</div>
+                <button class="add-cart-btn">加入購物車</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 九五樂府服務特色 Banner -->
+        <div class="features-bar">
+          <div class="feature-item">
+            <div class="feature-icon">✈️</div>
+            <div class="feature-text">
+              <h4>日本/韓國空運直達</h4>
+              <p>週週空運來台，最新唱片同步上市</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📈</div>
+            <div class="feature-text">
+              <h4>100% 計入銷售榜單</h4>
+              <p>代購保證計入 Oricon / Hanteo 榜</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏬</div>
+            <div class="feature-text">
+              <h4>實體門市信譽保證</h4>
+              <p>台北西門町老字號唱片行，取貨超安心</p>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       === 頁尾 Footer (店家資訊、購物說明與版權) ===
+       ========================================================================== -->
+  <footer class="main-footer" id="news">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- 欄位 1：關於九五樂府 -->
+        <div class="footer-col">
+          <h3>九五樂府 95MUSIC</h3>
+          <p style="margin-bottom: 12px; line-height: 1.6;">
+            九五樂府為台灣歷史悠久之專業音樂唱片、DVD/BD影音及日本動漫商品代購專賣店。
+          </p>
+          <p>📍 門市地址：台北市萬華區漢口街二段 (西門町鬧區)</p>
+          <p>📞 門市電話：(02) 2312-XXXX</p>
+          <p>⏰ 營業時間：12:00 - 21:30 (每週無休)</p>
+        </div>
+
+        <!-- 欄位 2：購物指南 -->
+        <div class="footer-col">
+          <h3>購物與代購指南</h3>
+          <ul class="footer-links">
+            <li><a href="#">初次購物須知與流程</a></li>
+            <li><a href="#">日本/韓國 代購與訂購細則</a></li>
+            <li><a href="#">預購商品出貨時間說明</a></li>
+            <li><a href="#">退換貨政策與消費爭議處理</a></li>
+            <li><a href="#">Oricon 榜單計榜說明</a></li>
+          </ul>
+        </div>
+
+        <!-- 欄位 3：會員服務 -->
+        <div class="footer-col">
+          <h3>會員服務中心</h3>
+          <ul class="footer-links">
+            <li><a href="#">查詢訂單狀態 / 追蹤包裹</a></li>
+            <li><a href="#">修改會員資料與密碼</a></li>
+            <li><a href="#">日本專區未上架商品詢價專區</a></li>
+            <li><a href="#">常見問題 FAQ</a></li>
+            <li><a href="#">聯絡線上客服</a></li>
+          </ul>
+        </div>
+
+        <!-- 欄位 4：付款與物流 -->
+        <div class="footer-col">
+          <h3>付款與配送方式</h3>
+          <p style="margin-bottom: 8px;">💳 支持付款方式：</p>
+          <p style="color: #d1d5db; margin-bottom: 12px;">信用卡 / 超商取貨付款 / ATM轉帳 / 門市取貨付款</p>
+          <p style="margin-bottom: 8px;">🚚 合作物流運送：</p>
+          <p style="color: #d1d5db;">7-ELEVEN / 全家超商取貨 / 郵局宅配</p>
+        </div>
